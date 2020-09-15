@@ -1,0 +1,23 @@
+{
+  "full_name": "Mpho Mphego",
+  "email": "mpho112@gmail.com",
+  "github_username": "mmphego",
+  "project_name": "face-detection-openvino",
+  "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "A simple face detection application using Intel OpenVINO",
+  "version": "0.1.0",
+  "add_python_version_badge": "y",
+  "add_openvino_version_badge": "y",
+  "add_docker_image_badge": "y",
+  "add_hardware_used_badge": "y",
+  "add_device_used_badge": "y",
+  "add_licence_badge": "y",
+  "open_source_license": [
+    "MIT license",
+    "BSD license",
+    "ISC license",
+    "Apache Software License 2.0",
+    "GNU General Public License v3",
+    "Not open source"
+  ]
+}

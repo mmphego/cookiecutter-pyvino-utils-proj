@@ -1,0 +1,5 @@
+# Ignore everything
+**
+
+# ... except for dependencies and source
+!{{cookiecutter.repo_name}}
