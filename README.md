@@ -1,6 +1,6 @@
 # PyVINO-Utils Cookiecutter
 
-[Cookiecutter template](https://github.com/cookiecutter/cookiecutter) for creating Intel OpenVINO projects using [PyVINO-Utils](https://github.com/mmphego/pyvino_utils) package.
+[Cookiecutter template](https://github.com/cookiecutter/cookiecutter) for creating Intel OpenVINO projects using [Python OpenVINO Utilities](https://github.com/mmphego/pyvino_utils) package.
 
 ## Usage
 

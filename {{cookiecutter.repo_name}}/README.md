@@ -49,4 +49,5 @@ See list of available models from [Open Model Zoo](https://github.com/openvinoto
 *Screenshots or gif* 
  
 ## Credits
-This package was created with Cookiecutter and the [mmphego/cookiecutter-pyvino-utils](mmphego/cookiecutter-pyvino-utils) project template.
+
+This package was created with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and the [mmphego/cookiecutter-pyvino-utils](https://github.com/mmphego/cookiecutter-pyvino-utils-proj) project template.
