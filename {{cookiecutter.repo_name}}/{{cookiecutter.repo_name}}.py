@@ -17,6 +17,7 @@ def arg_parser():
     parser.add_argument(
         "-b", "--show-bbox", action="store_true", help="Show bounding box."
     )
+    # FIXME: Add more args
     return parser.parse_args()
 
 
@@ -29,7 +30,7 @@ def main(args):
     for frame in input_feed.next_frame(progress=False):
         inference_results = face_detector.predict(frame, show_bbox=args.show_bbox)
 
-        # Add code here
+        # FIXME: Add code here
 
         if args.show_bbox:
             input_feed.show(frame)

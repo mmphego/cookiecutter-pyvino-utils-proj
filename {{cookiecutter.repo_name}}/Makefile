@@ -70,8 +70,8 @@ run-bootstrap: build-cached download-models ## Run bootstrap example inside the 
 	docker run --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device /dev/snd \
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
-	bash -c "source /opt/intel/openvino/bin/setupvars.sh && \
-			python {{cookiecutter.repo_name}} \
+	bash -c "$(SOURCE_DIR) && \
+			python3 {{cookiecutter.repo_name}}.py \
 				--model models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 \
 				--input cam \
 				--show-bbox"
@@ -81,8 +81,8 @@ run:  ## Run example inside the container
 	docker run --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device /dev/snd \
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
-	bash -c "source /opt/intel/openvino/bin/setupvars.sh && \
-			python {{cookiecutter.repo_name}} \
+	bash -c "$(SOURCE_DIR) && \
+			python3 {{cookiecutter.repo_name}}.py \
 				--model models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 \
 				--input cam \
 				--show-bbox"

@@ -1,0 +1,2 @@
+# FIXME: Add python packages
+git+https://github.com/mmphego/pyvino_utils.git
