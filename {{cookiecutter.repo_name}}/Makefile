@@ -5,6 +5,7 @@ SHELL := /bin/bash
 OPENVINO_DOCKER_IMAGE = "$(USER)/$(shell basename $(CURDIR))"
 # Get package name from pwd
 SOURCE_DIR = source /opt/intel/openvino/bin/setupvars.sh
+MODEL_PATH = models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001
 
 .DEFAULT_GOAL := help
 
@@ -23,7 +24,10 @@ export PRINT_HELP_PYSCRIPT
 help:
 	@python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-build clean-docker clean-pyc clean-test ## Remove all build, test, coverage and Python artefacts
+clean: clean-build clean-docker clean-models clean-pyc clean-test ## Remove all build, test, coverage and Python artefacts
+
+clean-models:  ## Remove downloaded models.
+	rm -rf models
 
 clean-docker:  ## Remove docker image
 	docker rmi $(OPENVINO_DOCKER_IMAGE) || true
@@ -72,7 +76,7 @@ run-bootstrap: build-cached download-models ## Run bootstrap example inside the 
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
 	bash -c "$(SOURCE_DIR) && \
 			python3 {{cookiecutter.repo_name}}.py \
-				--model models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 \
+				--model $(MODEL_PATH) \
 				--input cam \
 				--show-bbox"
 
@@ -83,6 +87,6 @@ run:  ## Run example inside the container
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
 	bash -c "$(SOURCE_DIR) && \
 			python3 {{cookiecutter.repo_name}}.py \
-				--model models/intel/face-detection-adas-binary-0001/FP32-INT1/face-detection-adas-binary-0001 \
+				--model $(MODEL_PATH) \
 				--input cam \
 				--show-bbox"
