@@ -63,7 +63,7 @@ build-cached:  ## Build cached docker image from file.
 	docker build -t $(OPENVINO_DOCKER_IMAGE) .
 
 download-models: build  ## Download OpenVINO models for use
-	docker run --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
+	docker run --user $(shell id -u):$(shell id -g) --privileged=true --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device /dev/snd \
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
 	bash -c "/opt/intel/openvino/deployment_tools/open_model_zoo/tools/downloader/downloader.py \
@@ -71,7 +71,7 @@ download-models: build  ## Download OpenVINO models for use
 
 run-bootstrap: build-cached download-models ## Run bootstrap example inside the container.
 	xhost +;
-	docker run --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
+	docker run --privileged=true --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device /dev/snd \
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
 	bash -c "$(SOURCE_DIR) && \
@@ -82,7 +82,7 @@ run-bootstrap: build-cached download-models ## Run bootstrap example inside the 
 
 run:  ## Run example inside the container
 	xhost +;
-	docker run --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
+	docker run --privileged=true --rm -ti --volume "$(CURDIR)":/app --env DISPLAY=$(DISPLAY) \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device /dev/snd \
 	--device /dev/video0 $(OPENVINO_DOCKER_IMAGE) \
 	bash -c "$(SOURCE_DIR) && \
